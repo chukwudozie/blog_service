@@ -32,6 +32,8 @@ dependencies {
     implementation 'io.grpc:grpc-stub:1.45.1'
     implementation 'io.grpc:grpc-services:1.45.1'
     implementation group: 'org.mongodb', name: 'mongodb-driver-sync', version: '4.5.1'
+    implementation 'org.slf4j:slf4j-jdk14:1.7.36'
+
     compileOnly 'org.apache.tomcat:annotations-api:6.0.53' // necessary for Java 9+
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

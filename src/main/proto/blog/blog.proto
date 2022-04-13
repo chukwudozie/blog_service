@@ -11,7 +11,13 @@ message Blog {
   string content = 4;
   string date_created = 5;
 }
+message CreateBlogRequest{
+  Blog blog = 1; // the id of the blog is not important
+}
+message CreateBlogResponse {
+  Blog blog = 1; // the id of the created blog should be the one in mongo DB
+}
 
 service BlogService{
-
+  rpc CreateBlog(CreateBlogRequest) returns (CreateBlogResponse) {};
 }
