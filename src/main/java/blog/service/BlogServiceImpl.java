@@ -1,2 +1,7 @@
-package blog.service;public class BlogServiceImpl {
+package blog.service;
+
+import com.proto.blog.BlogServiceGrpc;
+
+public class BlogServiceImpl extends BlogServiceGrpc.BlogServiceImplBase {
+
 }

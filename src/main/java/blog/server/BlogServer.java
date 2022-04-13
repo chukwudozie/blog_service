@@ -1,5 +1,6 @@
 package blog.server;
 
+import blog.service.BlogServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.protobuf.services.ProtoReflectionService;
@@ -8,10 +9,11 @@ import java.io.IOException;
 
 public class BlogServer {
     public static void main(String[] args) throws IOException, InterruptedException {
-        System.out.println("Sum Server ... loading ...");
+        System.out.println("Blog Server ... Running ...");
 
-        Server server = ServerBuilder.forPort(5005)
-                .addService(ProtoReflectionService.newInstance()) // Used to enable gRPC reflection
+        Server server = ServerBuilder.forPort(50054)
+                .addService(new BlogServiceImpl())
+//                .addService(ProtoReflectionService.newInstance()) // Used to enable gRPC reflection
                 .build();
         server.start();
 
