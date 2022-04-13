@@ -17,7 +17,15 @@ message CreateBlogRequest{
 message CreateBlogResponse {
   Blog blog = 1; // the id of the created blog should be the one in mongo DB
 }
+message ReadBlogRequest{
+  string blog_id = 1;
+}
+message  ReadBlogResponse {
+  Blog blog = 1;
+}
 
 service BlogService{
   rpc CreateBlog(CreateBlogRequest) returns (CreateBlogResponse) {};
+  // API returns NOT_FOUND if blog is not found
+  rpc ReadBlog(ReadBlogRequest) returns (ReadBlogResponse) {};
 }

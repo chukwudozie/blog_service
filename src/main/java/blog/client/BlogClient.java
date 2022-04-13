@@ -1,9 +1,6 @@
 package blog.client;
 
-import com.proto.blog.Blog;
-import com.proto.blog.BlogServiceGrpc;
-import com.proto.blog.CreateBlogRequest;
-import com.proto.blog.CreateBlogResponse;
+import com.proto.blog.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -32,6 +29,19 @@ public class BlogClient {
         System.out.println("Received a create blog response");
         System.out.println(response.toString());
 
+
+        String blogId  = response.getBlog().getId();
+        System.out.println("Reading blog ...");
+        ReadBlogResponse readBlogResponse = client.readBlog(ReadBlogRequest.newBuilder()
+                .setBlogId(blogId).build());
+        System.out.println(readBlogResponse.toString());
+
+        System.out.println("Reading blog not existing ...");
+        ReadBlogResponse readBlogResponseNotFound = client.readBlog(ReadBlogRequest.newBuilder()
+                .setBlogId("fake_id").build());
+
+        System.out.println(readBlogResponse.toString());
+//        System.out.println(readBlogResponseNotFound.toString());
         channel.shutdown();
 
     }
