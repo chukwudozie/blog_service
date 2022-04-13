@@ -36,12 +36,10 @@ public class BlogClient {
                 .setBlogId(blogId).build());
         System.out.println(readBlogResponse.toString());
 
-        System.out.println("Reading blog not existing ...");
-        ReadBlogResponse readBlogResponseNotFound = client.readBlog(ReadBlogRequest.newBuilder()
-                .setBlogId("fake_id").build());
-
-        System.out.println(readBlogResponse.toString());
-//        System.out.println(readBlogResponseNotFound.toString());
+        // testing error handling
+//        System.out.println("Reading blog not existing ...");
+//        ReadBlogResponse readBlogResponseNotFound = client.readBlog(ReadBlogRequest.newBuilder()
+//                .setBlogId("fake_id").build());
         channel.shutdown();
 
     }

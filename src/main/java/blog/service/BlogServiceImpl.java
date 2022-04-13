@@ -52,8 +52,17 @@ public class BlogServiceImpl extends BlogServiceGrpc.BlogServiceImplBase {
         String blogId = request.getBlogId();
         // find in the collection all the matching elements with the id from the request and return the first one
         System.out.println("Searching for a blog");
-       Document result =  collection.find(eq("_id",new ObjectId(blogId))).first();
 
+        Document result = null;
+        try {
+            result = collection.find(eq("_id", new ObjectId(blogId))).first();
+        } catch (Exception e){
+            responseObserver.onError(Status.NOT_FOUND
+                    .withDescription("The Blog with the ID "+blogId+ " was not found")
+                    .augmentDescription(e.getLocalizedMessage())
+                    .asRuntimeException());
+
+        }
        if(result == null){
            System.out.println("Blog not found");
            responseObserver.onError(Status.NOT_FOUND
