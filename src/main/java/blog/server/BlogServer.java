@@ -13,7 +13,7 @@ public class BlogServer {
 
         Server server = ServerBuilder.forPort(50054)
                 .addService(new BlogServiceImpl())
-//                .addService(ProtoReflectionService.newInstance()) // Used to enable gRPC reflection
+                .addService(ProtoReflectionService.newInstance()) // Used to enable gRPC reflection
                 .build();
         server.start();
 

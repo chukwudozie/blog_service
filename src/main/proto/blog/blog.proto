@@ -23,9 +23,39 @@ message ReadBlogRequest{
 message  ReadBlogResponse {
   Blog blog = 1;
 }
+message UpdateBlogRequest {
+  Blog blog = 1;
+}
+message UpdateBlogResponse {
+  Blog blog = 1;
+  string status = 2;
+}
+
+message  DeleteBlogRequest {
+  string  blog_id = 1;
+}
+
+message DeleteBlogResponse {
+ string status = 1;
+}
+
+message ListBlogRequest {
+
+}
+
+message ListBlogResponse {
+  Blog blog = 1;
+}
 
 service BlogService{
   rpc CreateBlog(CreateBlogRequest) returns (CreateBlogResponse) {};
   // API returns NOT_FOUND if blog is not found
   rpc ReadBlog(ReadBlogRequest) returns (ReadBlogResponse) {};
+  // API returns NOT_FOUND if blog is not found
+  rpc UpdateBlog(UpdateBlogRequest) returns (UpdateBlogResponse) {} ;
+  // API returns NOT_FOUND if blog is not found
+  rpc DeleteBlog (DeleteBlogRequest) returns (DeleteBlogResponse) {} ;
+
+//  API Returns a list of the blogs in the database
+  rpc ListBlogs(ListBlogRequest) returns (stream ListBlogResponse) {} ;
 }
